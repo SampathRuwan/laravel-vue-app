@@ -49568,13 +49568,19 @@ var app = new Vue({
     hasError: true,
     numberError: true,
     productAddModal: false,
+    updateProductModal: false,
     products: [],
     productItem: {
       'name': '',
       'sku': '',
       'description': '',
       'inventory': ''
-    }
+    },
+    update_id: '',
+    update_name: '',
+    update_sku: '',
+    update_description: '',
+    update_inventory: ''
   },
   mounted: function mounted() {
     this.getProducts();
@@ -49609,6 +49615,13 @@ var app = new Vue({
           _this.productAddModal = false;
         });
       }
+    },
+    setValue: function setValue(val_id, val_name, val_sku, val_description, val_inventory) {
+      this.update_id = val_id;
+      this.update_name = val_name;
+      this.update_sku = val_sku;
+      this.update_description = val_description;
+      this.update_inventory = val_inventory;
     }
   }
 });

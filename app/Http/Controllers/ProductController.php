@@ -20,7 +20,11 @@ class ProductController extends Controller
     }
 
     public function getProducts(Request $request){
-        $product = Product::all();
-        return $product;
+        $products = Product::all();
+        return $products;
+    }
+
+    public function deleteProduct(Request $request){
+        $product = Product::find($request->id)-delete();
     }
 }

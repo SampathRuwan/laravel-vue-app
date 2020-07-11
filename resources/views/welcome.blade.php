@@ -140,7 +140,7 @@
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Products</h1>
                             </div>
-                            <a id="product-add-modal" @click="productAddModal = true" class="btn btn-primary btn-icon-split btn-sm mb-4">
+                            <a id="add-product-modal" @click="productAddModal = true" class="btn btn-primary btn-icon-split btn-sm mb-4">
                                 <span class="icon text-white-50">
                                   <i class="fas fa-plus-circle"></i>
                                 </span>
@@ -174,7 +174,8 @@
                                                     <td>@{{product.sku}}</td>
                                                     <td>@{{product.description}}</td>
                                                     <td>@{{product.inventory}}</td>
-                                                    <td><a class="btn btn-warning text-white btn-circle btn-sm">
+                                                    <td><a id="update-product-modal" class="btn btn-warning text-white btn-circle btn-sm"
+                                                           @click="updateProductModal=true;setValue(product.id, product.name, product.sku, product.description, product.inventory)">
                                                             <i class="fas fa-pen"></i></a>
                                                         <a class="btn btn-danger text-white btn-circle btn-sm">
                                                             <i class="fas fa-trash"></i></a>
@@ -216,6 +217,8 @@
             </a>
 
             <!--modal designs starts-->
+
+            <!--add product modal-->
             <modal v-if="productAddModal" class="modal" @close="productAddModal = false">
                 <h5 slot="header">Add Product</h5>
                 <div slot="body">
@@ -259,6 +262,55 @@
                 <div slot="footer">
                     <button class="btn btn-info text-white" @click="productAddModal = false">Cancel</button>
                     <button class="btn btn-success" @click.prevent="saveProduct()">Save Product</button>
+                </div>
+            </modal>
+
+            <!--update product modal-->
+            <modal v-if="updateProductModal" class="modal" @close="updateProductModal = false">
+                <h5 slot="header">Update Product</h5>
+                <div slot="body">
+                    <form>
+                        <p class="text-center alert alert-danger"
+                           v-bind:class="{ disnone: hasError }">Please fill all fields!</p>
+                        <p class="text-center alert alert-danger"
+                           v-bind:class="{ disnone: hasError }">numbers</p>
+
+                        <div class="form-group row">
+                            <label for="update_id" class="col-sm-2 col-form-label">ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="update_id" name="update_id" :value="this.update_id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="update_name" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="update_name" name="update_name" :value="this.update_name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="update_sku" class="col-sm-2 col-form-label">SKU</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="update_sku" name="update_sku" :value="this.update_sku">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="update_description" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="update_description" name="update_description" :value="this.update_description">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="update_inventory" class="col-sm-2 col-form-label">Inventory</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="update_inventory" name="update_inventory" :value="this.update_inventory">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div slot="footer">
+                    <button class="btn btn-info text-white" @click="updateProductModal = false">Cancel</button>
+                    <button class="btn btn-success" @click="updateProduct()">Update Product</button>
                 </div>
             </modal>
             <!--modal designs ends-->
