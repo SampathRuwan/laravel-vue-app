@@ -49565,7 +49565,10 @@ Vue.component("modal", {
 var app = new Vue({
   el: '#app_vue',
   data: {
+    hasError: true,
+    numberError: true,
     productAddModal: false,
+    products: [],
     productItem: {
       'name': '',
       'sku': '',
@@ -49573,7 +49576,41 @@ var app = new Vue({
       'inventory': ''
     }
   },
-  methods: {}
+  mounted: function mounted() {
+    this.getProducts();
+  },
+  methods: {
+    getProducts: function getProducts() {
+      var _this = this;
+
+      axios.get('/getProducts').then(function (response) {
+        _this.products = response.data;
+      });
+    },
+    saveProduct: function saveProduct() {
+      var _this = this;
+
+      var input = this.productItem;
+
+      if (input['name'] === '' || input['sku'] === '' || input['description'] === '' || input['inventory'] === '') {
+        _this.hasError = false; // alert('error')
+      } else {
+        _this.hasError = true;
+        axios.post('/saveProduct', input).then(function (response) {
+          _this.productItem = {
+            'name': '',
+            'sku': '',
+            'description': '',
+            'inventory': ''
+          };
+
+          _this.getProducts();
+
+          _this.productAddModal = false;
+        });
+      }
+    }
+  }
 });
 
 /***/ }),

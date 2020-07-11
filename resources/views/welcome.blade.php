@@ -168,15 +168,15 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>@mdo</td>
-                                                    <td><a href="#" class="btn btn-warning btn-circle btn-sm">
+                                                <tr v-for="product in products">
+                                                    <th scope="row">@{{product.id}}</th>
+                                                    <td>@{{product.name}}</td>
+                                                    <td>@{{product.sku}}</td>
+                                                    <td>@{{product.description}}</td>
+                                                    <td>@{{product.inventory}}</td>
+                                                    <td><a class="btn btn-warning text-white btn-circle btn-sm">
                                                             <i class="fas fa-pen"></i></a>
-                                                        <a href="#" class="btn btn-danger btn-circle btn-sm">
+                                                        <a class="btn btn-danger text-white btn-circle btn-sm">
                                                             <i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>
@@ -220,39 +220,45 @@
                 <h5 slot="header">Add Product</h5>
                 <div slot="body">
                     <form>
+                        <p class="text-center alert alert-danger"
+                           v-bind:class="{ disnone: hasError }">Please fill all fields!</p>
+                        <p class="text-center alert alert-danger"
+                           v-bind:class="{ disnone: hasError }">numbers</p>
+
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="name" name="name"
-                                       required placeholder="Product Name" v-model="productItem.name">
+                                       placeholder="Product Name" v-model="productItem.name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sku" name="sku"
-                                       required placeholder="SKU" v-model="productItem.sku">
+                                        placeholder="SKU" v-model="productItem.sku">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="description" class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="description" name="description"
-                                       required placeholder="Description" v-model="productItem.description">
+                                       placeholder="Description" v-model="productItem.description">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inventory" class="col-sm-2 col-form-label">Inventory</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" id="inventory" name="inventory"
-                                       required placeholder="Inventory" v-model="productItem.inventory">
+                                       placeholder="Inventory" v-model="productItem.inventory" >
                             </div>
                         </div>
                     </form>
+
                 </div>
                 <div slot="footer">
                     <button class="btn btn-info text-white" @click="productAddModal = false">Cancel</button>
-                    <button class="btn btn-success" @click="saveProduct()">Save Product</button>
+                    <button class="btn btn-success" @click.prevent="saveProduct()">Save Product</button>
                 </div>
             </modal>
             <!--modal designs ends-->
