@@ -49558,9 +49558,22 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-console.log('working !');
+console.log('vue js working !!!');
+Vue.component("modal", {
+  template: "#modal-template"
+});
 var app = new Vue({
-  el: '#app_vue'
+  el: '#app_vue',
+  data: {
+    productAddModal: false,
+    productItem: {
+      'name': '',
+      'sku': '',
+      'description': '',
+      'inventory': ''
+    }
+  },
+  methods: {}
 });
 
 /***/ }),

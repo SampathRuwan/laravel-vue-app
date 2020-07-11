@@ -27,9 +27,20 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
 console.log('vue js working !!!');
+
+Vue.component("modal", {
+    template: "#modal-template"
+});
 const app = new Vue({
     el: '#app_vue',
+
+    data: {
+        productAddModal:false,
+        productItem: {'name':'','sku':'','description':'','inventory':''},
+    },
+    methods: {
+
+    }
 
 });

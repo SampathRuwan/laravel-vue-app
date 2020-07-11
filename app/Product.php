@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-//    protected $table = "laravue_db";
-//    public $timestamps = false;
+    protected $table = "products";
+    public $timestamps = false;
 }

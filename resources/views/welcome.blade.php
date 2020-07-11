@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!--style css-->
         <link href="{{ asset('css/template/sb-admin-2.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/template/modal.css') }}" rel="stylesheet">
+
 
     </head>
 
@@ -138,11 +140,11 @@
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Products</h1>
                             </div>
-                            <a href="#" class="btn btn-primary btn-icon-split btn-sm mb-4">
-                            <span class="icon text-white-50">
-                              <i class="fas fa-plus-circle"></i>
-                            </span>
-                                <span class="text">Add Product</span>
+                            <a id="product-add-modal" @click="productAddModal = true" class="btn btn-primary btn-icon-split btn-sm mb-4">
+                                <span class="icon text-white-50">
+                                  <i class="fas fa-plus-circle"></i>
+                                </span>
+                                <span class="text text-white">Add Product</span>
                             </a>
 
                             <div class="row">
@@ -212,8 +214,83 @@
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
+
+            <!--modal designs starts-->
+            <modal v-if="productAddModal" class="modal" @close="productAddModal = false">
+                <h5 slot="header">Add Product</h5>
+                <div slot="body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       required placeholder="Product Name" v-model="productItem.name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sku" class="col-sm-2 col-form-label">SKU</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="sku" name="sku"
+                                       required placeholder="SKU" v-model="productItem.sku">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="description" name="description"
+                                       required placeholder="Description" v-model="productItem.description">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inventory" class="col-sm-2 col-form-label">Inventory</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="inventory" name="inventory"
+                                       required placeholder="Inventory" v-model="productItem.inventory">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div slot="footer">
+                    <button class="btn btn-info text-white" @click="productAddModal = false">Cancel</button>
+                    <button class="btn btn-success" @click="saveProduct()">Save Product</button>
+                </div>
+            </modal>
+            <!--modal designs ends-->
+
         </div>
     </body>
 
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <!-- template for the modal component -->
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+
+                        <div class="modal-header">
+                            <slot name="header">
+                                default header
+                            </slot>
+                        </div>
+
+                        <div class="modal-body">
+                            <slot name="body">
+                                default body
+                            </slot>
+                        </div>
+
+                        <div class="modal-footer border-bottom-primary">
+                            <slot name="footer">
+                                default footer
+                                <button class="modal-default-button" @click="$emit('close')">
+                                    OK
+                                </button>
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </script>
 </html>
