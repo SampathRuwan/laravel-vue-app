@@ -224,9 +224,7 @@
                 <div slot="body">
                     <form>
                         <p class="text-center alert alert-danger"
-                           v-bind:class="{ disnone: hasError }">Please fill all fields!</p>
-                        <p class="text-center alert alert-danger"
-                           v-bind:class="{ disnone: hasError }">numbers</p>
+                           v-bind:class="{ disnone: hasError }">Error ...! &nbsp; Enter Valid Details....</p>
 
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -271,9 +269,7 @@
                 <div slot="body">
                     <form>
                         <p class="text-center alert alert-danger"
-                           v-bind:class="{ disnone: hasError }">Please fill all fields!</p>
-                        <p class="text-center alert alert-danger"
-                           v-bind:class="{ disnone: hasError }">numbers</p>
+                           v-bind:class="{ disnone: hasError }">Error ...! &nbsp; Enter Valid Details....</p>
 
                         <div class="form-group row">
                             <label for="update_id" class="col-sm-2 col-form-label">ID</label>
@@ -310,7 +306,7 @@
                 </div>
                 <div slot="footer">
                     <button class="btn btn-info text-white" @click="updateProductModal = false">Cancel</button>
-                    <button class="btn btn-success" @click="updateProduct()">Update Product</button>
+                    <button class="btn btn-warning" @click="updateProduct()">Update Product</button>
                 </div>
             </modal>
             <!--modal designs ends-->

@@ -67,8 +67,8 @@ const app = new Vue({
             if(input['name'] === '' ||input['sku'] === '' ||input['description'] === '' ||
                 input['inventory'] === ''){
                 _this.hasError = false;
-                // alert('error')
-            }else{
+            }
+            else{
                 _this.hasError =  true;
                 axios.post('/saveProduct', input).then(function (response) {
                     _this.productItem = {'name':'','sku':'','description':'','inventory':''}
@@ -103,6 +103,8 @@ const app = new Vue({
             var sku_val = document.getElementById('update_sku');
             var desc_val = document.getElementById('update_description');
             var inv_val = document.getElementById('update_inventory');
+
+            // _this.hasError =  true;
 
             axios.post('/updateProduct/' + id_val.value, {val_1: name_val.value, val_2: sku_val.value,
                 val_3: desc_val.value, val_4: inv_val.value})

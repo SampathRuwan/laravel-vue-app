@@ -49599,7 +49599,7 @@ var app = new Vue({
       var input = this.productItem;
 
       if (input['name'] === '' || input['sku'] === '' || input['description'] === '' || input['inventory'] === '') {
-        _this.hasError = false; // alert('error')
+        _this.hasError = false;
       } else {
         _this.hasError = true;
         axios.post('/saveProduct', input).then(function (response) {
@@ -49639,7 +49639,8 @@ var app = new Vue({
       var name_val = document.getElementById('update_name');
       var sku_val = document.getElementById('update_sku');
       var desc_val = document.getElementById('update_description');
-      var inv_val = document.getElementById('update_inventory');
+      var inv_val = document.getElementById('update_inventory'); // _this.hasError =  true;
+
       axios.post('/updateProduct/' + id_val.value, {
         val_1: name_val.value,
         val_2: sku_val.value,
