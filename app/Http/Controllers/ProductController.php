@@ -25,6 +25,18 @@ class ProductController extends Controller
     }
 
     public function deleteProduct(Request $request){
-        $product = Product::find($request->id)-delete();
+        $product = Product::find($request->id)->delete();
+    }
+
+    public function updateProduct(Request $request, $id){
+        $product = Product::where('id',$id)->first();
+
+        $product->name = $request->get('val_1');
+        $product->sku = $request->get('val_2');
+        $product->description = $request->get('val_3');
+        $product->inventory = $request->get('val_4');
+        $product->save();
+
+        return $product;
     }
 }

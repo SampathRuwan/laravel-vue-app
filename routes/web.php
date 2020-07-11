@@ -19,3 +19,4 @@ Route::get('/', function () {
 Route::post('/saveProduct','ProductController@saveProduct');
 Route::get('/getProducts','ProductController@getProducts');
 Route::post('/deleteProduct/{id}','ProductController@deleteProduct');
+Route::post('/updateProduct/{id}','ProductController@updateProduct');

@@ -177,7 +177,7 @@
                                                     <td><a id="update-product-modal" class="btn btn-warning text-white btn-circle btn-sm"
                                                            @click="updateProductModal=true;setValue(product.id, product.name, product.sku, product.description, product.inventory)">
                                                             <i class="fas fa-pen"></i></a>
-                                                        <a class="btn btn-danger text-white btn-circle btn-sm">
+                                                        <a @click.prevent="deleteProduct(product)" class="btn btn-danger text-white btn-circle btn-sm">
                                                             <i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>

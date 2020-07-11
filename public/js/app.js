@@ -49622,6 +49622,34 @@ var app = new Vue({
       this.update_sku = val_sku;
       this.update_description = val_description;
       this.update_inventory = val_inventory;
+    },
+    deleteProduct: function deleteProduct(product) {
+      var _this = this;
+
+      if (confirm('Are you want to delete this ?')) {
+        axios.post('/deleteProduct/' + product.id).then(function (response) {
+          _this.getProducts();
+        });
+      }
+    },
+    updateProduct: function updateProduct() {
+      var _this = this;
+
+      var id_val = document.getElementById('update_id');
+      var name_val = document.getElementById('update_name');
+      var sku_val = document.getElementById('update_sku');
+      var desc_val = document.getElementById('update_description');
+      var inv_val = document.getElementById('update_inventory');
+      axios.post('/updateProduct/' + id_val.value, {
+        val_1: name_val.value,
+        val_2: sku_val.value,
+        val_3: desc_val.value,
+        val_4: inv_val.value
+      }).then(function (response) {
+        _this.getProducts();
+
+        _this.updateProductModal = false;
+      });
     }
   }
 });
