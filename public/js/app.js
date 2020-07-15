@@ -49566,6 +49566,7 @@ var app = new Vue({
   el: '#app_vue',
   data: {
     hasError: true,
+    updateHasError: true,
     numberError: true,
     productAddModal: false,
     updateProductModal: false,
@@ -49639,7 +49640,7 @@ var app = new Vue({
       var name_val = document.getElementById('update_name');
       var sku_val = document.getElementById('update_sku');
       var desc_val = document.getElementById('update_description');
-      var inv_val = document.getElementById('update_inventory'); // _this.hasError =  true;
+      var inv_val = document.getElementById('update_inventory'); // _this.updateHasError =  true;
 
       axios.post('/updateProduct/' + id_val.value, {
         val_1: name_val.value,

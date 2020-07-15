@@ -37,6 +37,7 @@ const app = new Vue({
 
     data: {
         hasError: true,
+        updateHasError: true,
         numberError: true,
         productAddModal:false,
         updateProductModal:false,
@@ -104,15 +105,17 @@ const app = new Vue({
             var desc_val = document.getElementById('update_description');
             var inv_val = document.getElementById('update_inventory');
 
-            // _this.hasError =  true;
+            // _this.updateHasError =  true;
 
-            axios.post('/updateProduct/' + id_val.value, {val_1: name_val.value, val_2: sku_val.value,
-                val_3: desc_val.value, val_4: inv_val.value})
-                .then(function (response) {
-
-                    _this.getProducts();
-                    _this.updateProductModal = false;
-                });
+            axios.post('/updateProduct/' + id_val.value, {
+                val_1: name_val.value,
+                val_2: sku_val.value,
+                val_3: desc_val.value,
+                val_4: inv_val.value
+            }).then(function (response) {
+                _this.getProducts();
+                _this.updateProductModal = false;
+            });
         }
     }
 

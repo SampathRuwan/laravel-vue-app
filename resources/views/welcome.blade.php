@@ -269,7 +269,7 @@
                 <div slot="body">
                     <form>
                         <p class="text-center alert alert-danger"
-                           v-bind:class="{ disnone: hasError }">Error ...! &nbsp; Enter Valid Details....</p>
+                           v-bind:class="{ disnone: updateHasError }">Error ...! &nbsp; Enter Valid Details....</p>
 
                         <div class="form-group row">
                             <label for="update_id" class="col-sm-2 col-form-label">ID</label>
